@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>StudySpacer - Lịch Học Ngắt Quãng</title>
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📚</text></svg>" type="image/svg+xml">
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📚</text></svg>"
+    type="image/svg+xml">
   <style>
     /* Reset CSS */
     * {
@@ -12,7 +15,7 @@
       padding: 0;
       box-sizing: border-box;
     }
-    
+
     /* Giao diện chính */
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -22,30 +25,30 @@
       color: #333;
       line-height: 1.6;
     }
-    
+
     h1 {
       font-size: 28px;
       margin-bottom: 20px;
       color: #2c3e50;
-      text-shadow: 1px 1px 1px rgba(0,0,0,0.1);
+      text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
     }
-    
+
     .container {
       margin: 20px auto;
       max-width: 800px;
       background-color: white;
       padding: 25px;
       border-radius: 10px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     }
-    
+
     .input-group {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       margin-bottom: 15px;
     }
-    
+
     input {
       padding: 10px 15px;
       width: 220px;
@@ -55,17 +58,17 @@
       font-size: 15px;
       transition: border-color 0.3s;
     }
-    
+
     input:focus {
       outline: none;
       border-color: #3498db;
       box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
     }
-    
+
     .button-group {
       margin: 15px 0;
     }
-    
+
     button {
       padding: 10px 20px;
       margin: 5px;
@@ -76,59 +79,60 @@
       font-weight: 500;
       transition: all 0.3s;
     }
-    
+
     #addBtn {
       background-color: #3498db;
       color: white;
     }
-    
+
     #addBtn:hover {
       background-color: #2980b9;
       transform: translateY(-2px);
     }
-    
+
     #clearBtn {
       background-color: #e74c3c;
       color: white;
     }
-    
+
     #clearBtn:hover {
       background-color: #c0392b;
       transform: translateY(-2px);
     }
-    
+
     /* Bảng lịch học */
     .table-container {
       overflow-x: auto;
       margin: 20px 0;
     }
-    
+
     table {
       width: 100%;
       border-collapse: collapse;
       background-color: #fff;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     }
-    
-    th, td {
+
+    th,
+    td {
       padding: 12px;
       border: 1px solid #ddd;
       text-align: left;
       font-size: 14px;
     }
-    
+
     th {
       background-color: #3498db;
       color: white;
       position: sticky;
       top: 0;
     }
-    
+
     td {
       min-width: 120px;
       vertical-align: top;
     }
-    
+
     td div {
       padding: 6px 8px;
       margin-bottom: 5px;
@@ -136,17 +140,17 @@
       background-color: #ecf0f1;
       transition: all 0.2s;
     }
-    
+
     td div:hover {
       background-color: #d5dbdb;
     }
-    
+
     .completed {
       background-color: #e0e0e0;
       text-decoration: line-through;
       color: #7f8c8d;
     }
-    
+
     #message {
       color: #27ae60;
       font-size: 16px;
@@ -154,7 +158,7 @@
       font-weight: 500;
       height: 24px;
     }
-    
+
     #notification {
       position: fixed;
       top: 20px;
@@ -164,7 +168,7 @@
       padding: 15px;
       border-radius: 8px;
       max-width: 300px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
       display: none;
       z-index: 1000;
       text-align: left;
@@ -175,12 +179,12 @@
       .container {
         padding: 15px;
       }
-      
+
       input {
         width: 100%;
         margin: 5px 0;
       }
-      
+
       button {
         width: 100%;
         margin: 5px 0;
@@ -188,22 +192,23 @@
     }
   </style>
 </head>
+
 <body>
   <div class="container">
     <h1>Lên lịch học ngắt quãng</h1>
-    
+
     <div class="input-group">
       <input type="text" id="subject" placeholder="Môn học (VD: Toán)">
       <input type="text" id="content" placeholder="Nội dung học (VD: Hình học)">
     </div>
-    
+
     <div class="button-group">
       <button id="addBtn" onclick="addSubject()">Thêm môn hôm nay</button>
       <button id="clearBtn" onclick="clearSchedule()">Xóa lịch</button>
     </div>
-    
+
     <div id="message"></div>
-    
+
     <div class="table-container">
       <table id="scheduleTable">
         <thead id="tableHeader"></thead>
@@ -211,7 +216,7 @@
       </table>
     </div>
   </div>
-  
+
   <div id="notification"></div>
 
   <script>
@@ -219,19 +224,19 @@
     let scheduleData = {};
 
     // Khởi tạo khi trang được tải
-    window.onload = function() {
+    window.onload = function () {
       // Kiểm tra dữ liệu đã lưu trong localStorage
       const savedData = localStorage.getItem('studySchedule');
       if (savedData) {
         scheduleData = JSON.parse(savedData);
       }
-      
+
       // Hiển thị lịch
       renderSchedule();
-      
+
       // Đặt hẹn giờ kiểm tra thông báo mỗi phút
       setInterval(checkNotifications, 60000);
-      
+
       // Kiểm tra ngay khi tải trang
       checkNotifications();
     };
@@ -251,9 +256,9 @@
 
       // Ngày hiện tại
       const today = new Date();
-      
+
       // Mảng khoảng cách ngắt quãng (thêm 30 ngày)
-      const intervals = [0, 1, 3, 7, 14, 30];
+      const intervals = [0, 1, 4, 7, 14, 30];
 
       // Tạo lịch ôn tập theo khoảng cách
       for (let i = 0; i < intervals.length; i++) {
@@ -265,7 +270,7 @@
         if (!scheduleData[dateKey]) {
           scheduleData[dateKey] = [];
         }
-        
+
         // Thêm môn học vào lịch
         scheduleData[dateKey].push({
           subject,
@@ -277,14 +282,14 @@
 
       // Lưu vào localStorage
       localStorage.setItem('studySchedule', JSON.stringify(scheduleData));
-      
+
       // Cập nhật giao diện
       renderSchedule();
-      
+
       // Hiển thị thông báo
       message.textContent = `Đã thêm "${subject}" và lên lịch ôn tập!`;
       setTimeout(() => message.textContent = '', 3000);
-      
+
       // Xóa dữ liệu input
       document.getElementById('subject').value = '';
       document.getElementById('content').value = '';
@@ -299,31 +304,31 @@
 
       // Ngày hiện tại
       const today = new Date();
-      
+
       // Tạo hàng tiêu đề
       const headerRow = document.createElement('tr');
-      
+
       // Tạo tiêu đề cho 40 ngày
       for (let i = 0; i < 40; i++) {
         const date = new Date(today);
         date.setDate(today.getDate() + i);
         const th = document.createElement('th');
-        
+
         // Định dạng ngày kiểu VN
         th.textContent = date.toLocaleDateString('vi-VN');
-        
+
         // Đánh dấu ngày hiện tại
         if (i === 0) {
           th.style.backgroundColor = '#2980b9';
         }
-        
+
         headerRow.appendChild(th);
       }
       tableHeader.appendChild(headerRow);
 
       // Tạo hàng dữ liệu
       const dataRow = document.createElement('tr');
-      
+
       // Điền dữ liệu cho từng ngày
       for (let i = 0; i < 40; i++) {
         const date = new Date(today);
@@ -334,45 +339,44 @@
         // Nếu có lịch học vào ngày này
         if (scheduleData[dateKey]) {
           const items = scheduleData[dateKey];
-          
+
           // Hiển thị từng môn học
           items.forEach((item, index) => {
             const div = document.createElement('div');
-            
+
             // Hiển thị thông tin môn học
             div.textContent = `${item.subject} - ${item.content}`;
-            
+
             // Thêm thông tin thời điểm ôn tập (lần thứ mấy)
             if (item.interval) {
               const intervalText = document.createElement('small');
-              intervalText.textContent = item.interval === 0 ? 
-                ' (Học mới)' : ` (Ôn lần ${
-                  item.interval === 1 ? '1 - ngày tiếp theo' : 
-                  item.interval === 3 ? '2 - sau 3 ngày' : 
-                  item.interval === 7 ? '3 - sau 1 tuần' : 
-                  item.interval === 14 ? '4 - sau 2 tuần' : '5 - sau 1 tháng'
+              intervalText.textContent = item.interval === 0 ?
+                ' (Học mới)' : ` (Ôn lần ${item.interval === 1 ? '1 - ngày tiếp theo' :
+                  item.interval === 3 ? '2 - sau 3 ngày' :
+                    item.interval === 7 ? '3 - sau 1 tuần' :
+                      item.interval === 14 ? '4 - sau 2 tuần' : '5 - sau 1 tháng'
                 })`;
               intervalText.style.color = '#7f8c8d';
               div.appendChild(document.createElement('br'));
               div.appendChild(intervalText);
             }
-            
+
             div.style.cursor = 'pointer';
-            
+
             // Áp dụng lớp CSS nếu đã hoàn thành
             if (item.completed) {
               div.classList.add('completed');
             }
-            
+
             // Xử lý sự kiện khi click
             div.onclick = () => {
               item.completed = !item.completed;
-              
+
               // Lưu vào localStorage
               localStorage.setItem('studySchedule', JSON.stringify(scheduleData));
               renderSchedule();
             };
-            
+
             td.appendChild(div);
           });
         }
@@ -390,7 +394,7 @@
 
       // Thời điểm thông báo: 7h, 12h, 19h
       const notifyHours = [7, 12, 19];
-      
+
       // Kiểm tra nếu đang là giờ thông báo
       if (notifyHours.includes(currentHour)) {
         if (scheduleData[currentDateKey]) {
@@ -399,23 +403,22 @@
 
           if (pendingItems.length > 0) {
             let notifyText = `Hôm nay (${currentDateKey}) bạn cần ôn tập:\n`;
-            
+
             pendingItems.forEach(item => {
-              const intervalText = item.interval === 0 ? 
-                '(Học mới)' : `(Ôn lần ${
-                  item.interval === 1 ? '1' : 
-                  item.interval === 3 ? '2' : 
-                  item.interval === 7 ? '3' : 
-                  item.interval === 14 ? '4' : '5'
+              const intervalText = item.interval === 0 ?
+                '(Học mới)' : `(Ôn lần ${item.interval === 1 ? '1' :
+                  item.interval === 3 ? '2' :
+                    item.interval === 7 ? '3' :
+                      item.interval === 14 ? '4' : '5'
                 })`;
-              
+
               notifyText += `- ${item.subject} - ${item.content} ${intervalText}\n`;
             });
-            
+
             // Hiển thị thông báo HTML
             notification.textContent = notifyText;
             notification.style.display = 'block';
-            
+
             // Ẩn sau 7 giây
             setTimeout(() => notification.style.display = 'none', 7000);
           }
@@ -427,10 +430,10 @@
     function clearSchedule() {
       if (confirm('Bạn có chắc chắn muốn xóa toàn bộ lịch học?')) {
         scheduleData = {};
-        
+
         // Xóa dữ liệu trong localStorage
         localStorage.removeItem('studySchedule');
-        
+
         // Xóa dữ liệu khỏi giao diện
         document.getElementById('subject').value = '';
         document.getElementById('content').value = '';
@@ -442,4 +445,5 @@
     }
   </script>
 </body>
+
 </html>

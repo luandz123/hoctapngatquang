@@ -26,3 +26,25 @@ To run the project in VS Code, follow these steps:
 3. The app will display the review dates in a list format.
 
 Enjoy your study sessions!
+
+## CI/CD with Jenkins
+
+This project includes a `Jenkinsfile` and `Dockerfile` to automate the build, test, and deployment process.
+
+### Prerequisites
+
+1.  **Jenkins Server**: Ensure you have a Jenkins server running.
+2.  **Docker**: Jenkins agent must have Docker installed and permission to run docker commands.
+3.  **Plugins**: "Docker Pipeline" and "Git" plugins recommended.
+
+### Pipeline Stages
+
+1.  **Build**: Builds a Docker image containing the `index.html` served by Nginx.
+2.  **Test**: Runs a simple smoke test verifying the content exists in the container.
+3.  **Deploy**: Stops any existing container and starts the new version on port **8081** (http://localhost:8081).
+
+### Setup
+
+1.  Create a "Pipeline" or "Multibranch Pipeline" job in Jenkins.
+2.  Point it to this Git repository.
+3.  Jenkins will automatically detect the `Jenkinsfile` and run the pipeline.
